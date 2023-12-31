@@ -1,17 +1,5 @@
-<!doctype html>
-<html>
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>FikiAp || Home</title>
-  @vite('resources/css/app.css')
-</head>
-<body>
-  <h1 class="text-3xl font-bold underline">
-    Hello world!
-  </h1>
+@extends('layouts.main')
 
-
-  <script src="js/script.js"></script>
-</body>
-</html>
+@section("container")
+ <h1 class="text-3xl font-bold underline">Hello world!</h1>
+@endsection
