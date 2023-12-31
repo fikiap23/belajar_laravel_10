@@ -18,7 +18,7 @@ Route::get('/', function () {
 });
 
 Route::get('/about', function () {
-    return view("about");
+    return view("about", ["name" => "Fiki Aprian", "email" => "fikiaprian23@gmail.com", "image" => "fiki.png"]);
 });
 
 Route::get('/blog', function () {

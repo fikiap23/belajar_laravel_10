@@ -9,8 +9,8 @@
 </head>
 <body>
     <h1 class="text-3xl font-bold">Ini halaman about</h1>
-    <h3 class="text-xl"> Fiki Aprian</h3>
-    <p class="text-lg"> fikiaprian23@gmail.com</p>
-    <img src="img/fiki.png" alt="fiki" width="200">
+    <h3 class="text-xl"> <?=  $name; ?></h3>
+    <p class="text-lg"> <?=  $email; ?></p>
+    <img src="img/<?=  $image; ?>" alt="<?=  $name; ?>" width="200">
 </body>
 </html>
