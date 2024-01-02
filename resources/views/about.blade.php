@@ -6,4 +6,4 @@
 <p class="text-lg"> {{ $email }}</p>
 <img src="img/{{ $image }}" alt="{{ $name }}" width="200">
 @endsection
-   
+

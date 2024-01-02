@@ -2,14 +2,13 @@
 @extends('layouts.main')
 
 @section("container")
-
-@foreach ($posts as $post)
-   <article class="mb-10">
+ <article class="mb-10">
     <h2 class="font-bold text-2xl">
-        <a href="/blog/{{ $post["slug"] }}">{{ $post["title"] }}</a>
+        {{ $post["title"] }}
     </h2>
     <h5 class="font-bold">By: {{ $post["author"] }}</h5>
     <p>{{ $post["body"] }}</p>
    </article>
-@endforeach
+
+<a href="/blog">Back to blog</a>
 @endsection
