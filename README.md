@@ -1,66 +1,134 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+### Cara mudah insert ke database (tabel posts) menggunan artisan tinker
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+-   Post::create([
+    'title' => 'Sebuah seni mengetik',
+    'excerpt' => 'Di lorong waktu, penyair menyulam kata-kata, mencipta serangkaian makna dalam setiap baitnya.',
+    'body' => 'Di lorong waktu, penyair menyulam kata-kata, mencipta serangkaian makna dalam setiap baitnya. Di serangkaian loop waktu, programmer menyusun kode-kode, menciptakan algoritma dalam setiap iterasinya.'
+    ])
 
-## About Laravel
+    Mass Assignment di Laravel adalah teknik yang memungkinkan Anda untuk menyimpan data dalam jumlah besar ke dalam database dengan mudah. Pada umumnya, saat Anda menyimpan data dalam sebuah model, Anda harus menetapkan nilai satu per satu ke setiap kolom pada model. Mass Assignment memungkinkan Anda untuk menyimpan beberapa kolom sekaligus menggunakan array atau objek.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+Dalam konteks Laravel, hal ini umumnya digunakan dalam model Eloquent. Untuk menggunakan Mass Assignment, model Anda harus memiliki atribut `$fillable` atau `$guarded` yang ditetapkan.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+1. **$fillable:**
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+    - Jika Anda menggunakan `$fillable`, Anda harus menyebutkan kolom-kolom yang dapat diisi secara massal.
+    - Contoh:
 
-## Learning Laravel
+        ```php
+        class Post extends Model
+        {
+            protected $fillable = ['title', 'content'];
+        }
+        ```
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+        Dengan definisi di atas, Anda dapat menggunakan mass assignment untuk menyimpan data pada kolom 'title' dan 'content' dari model `Post`.
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+2. **$guarded:**
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+    - Jika Anda menggunakan `$guarded`, Anda harus menyebutkan kolom-kolom yang **tidak** dapat diisi secara massal.
+    - Contoh:
 
-## Laravel Sponsors
+        ```php
+        class Post extends Model
+        {
+            protected $guarded = ['id'];
+        }
+        ```
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+        Dengan definisi di atas, semua kolom, kecuali 'id', dapat diisi secara massal.
 
-### Premium Partners
+Contoh penggunaan Mass Assignment:
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+```php
+// Menggunakan mass assignment untuk menyimpan data
+$post = Post::create([
+    'title' => 'Sebuah seni mengetik',
+    'excerpt' => 'Di lorong waktu, penyair menyulam kata-kata, mencipta serangkaian makna dalam setiap baitnya.',
+    'body' => 'Di lorong waktu, penyair menyulam kata-kata, mencipta serangkaian makna dalam setiap baitnya. Di serangkaian loop waktu, programmer menyusun kode-kode, menciptakan algoritma dalam setiap iterasinya.'
+    ]);
+```
 
-## Contributing
+Penting untuk diingat bahwa Anda harus berhati-hati dengan penggunaan Mass Assignment, terutama ketika menerima data dari input pengguna. Pastikan untuk menyaring dan memvalidasi data dengan baik agar hanya data yang diperlukan yang dapat diisi secara massal.
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+#### Untuk menggunakan Mass Assignment pada metode `update` dalam model Eloquent di Laravel, Anda dapat menggabungkan pendekatan yang sama seperti pada metode `create`. Pastikan atribut `$fillable` atau `$guarded` pada model Anda telah diatur dengan benar.
 
-## Code of Conduct
+Contoh penggunaan Mass Assignment pada metode `update`:
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+1. **Menggunakan `$fillable`:**
 
-## Security Vulnerabilities
+    ```php
+    class Post extends Model
+    {
+        protected $fillable = ['title', 'content'];
+    }
+    ```
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+    Kemudian, pada controller atau di tempat lain, Anda dapat menggunakan metode `update` dengan mass assignment seperti ini:
 
-## License
+    ```php
+    $post = Post::find($postId);
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+    $post->update([
+        'title' => 'Judul Postingan yang Diperbarui',
+        'content' => 'Isi postingan yang diperbarui.'
+    ]);
+    ```
+
+2. **Menggunakan `$guarded`:**
+
+    ```php
+    class Post extends Model
+    {
+        protected $guarded = ['id'];
+    }
+    ```
+
+    Dengan pengaturan di atas, semua kolom, kecuali 'id', dapat diisi secara massal pada metode `update`:
+
+    ```php
+    $post = Post::find($postId);
+
+    $post->update([
+        'title' => 'Judul Postingan yang Diperbarui',
+        'content' => 'Isi postingan yang diperbarui.'
+    ]);
+    ```
+
+Pastikan bahwa metode `update` di atas dilakukan pada instance model yang sudah ada, dan `$postId` adalah ID dari model yang ingin diperbarui. Metode `update` ini akan melakukan operasi `UPDATE` pada baris yang sesuai dalam database dengan menggunakan Mass Assignment.
+
+#### Berikut adalah daftar yang lebih lengkap dari metode Eloquent dan koleksi (collection) beserta contoh dan penjelasan dalam format Markdown:
+
+### Eloquent:
+
+| Metode                              | Contoh                                    | Penjelasan                                                 |
+| ----------------------------------- | ----------------------------------------- | ---------------------------------------------------------- |
+| `all()`                             | `$users = User::all();`                   | Mendapatkan semua record dari tabel.                       |
+| `find($id)`                         | `$user = User::find(1);`                  | Mencari record berdasarkan ID.                             |
+| `findOrFail($id)`                   | `$user = User::findOrFail(1);`            | Mencari record berdasarkan ID, error jika tidak ditemukan. |
+| `create($data)`                     | `User::create([...]);`                    | Membuat record baru.                                       |
+| `update($data)`                     | `$user->update([...]);`                   | Memperbarui record yang sudah ada.                         |
+| `delete()`                          | `$user->delete();`                        | Menghapus record.                                          |
+| `where($column, $operator, $value)` | `User::where('status', 'active')->get();` | Membuat kondisi dalam query.                               |
+| `orderBy($column, $direction)`      | `User::orderBy('name', 'asc')->get();`    | Mengurutkan hasil query.                                   |
+| `with($relation)`                   | `Post::with('comments')->get();`          | Eager loading untuk mengoptimalkan kueri N+1.              |
+| `first()`                           | `$firstUser = User::first();`             | Mendapatkan record pertama.                                |
+| `firstOrFail()`                     | `$firstUser = User::firstOrFail();`       | Mendapatkan record pertama, error jika tidak ada.          |
+| `count()`                           | `$userCount = User::count();`             | Mendapatkan jumlah record.                                 |
+
+### Koleksi (Collection):
+
+| Metode                    | Contoh                                                           | Penjelasan                                                  |
+| ------------------------- | ---------------------------------------------------------------- | ----------------------------------------------------------- |
+| `all()`                   | `$collection->all();`                                            | Mendapatkan semua elemen dalam koleksi.                     |
+| `first()`                 | `$firstItem = $collection->first();`                             | Mendapatkan elemen pertama dari koleksi.                    |
+| `last()`                  | `$lastItem = $collection->last();`                               | Mendapatkan elemen terakhir dari koleksi.                   |
+| `count()`                 | `$count = $collection->count();`                                 | Mendapatkan jumlah elemen dalam koleksi.                    |
+| `map($callback)`          | `$doubledValues = $collection->map(function ($item) {...});`     | Mengaplikasikan fungsi ke setiap elemen dalam koleksi.      |
+| `filter($callback)`       | `$filteredValues = $collection->filter(function ($item) {...});` | Mengembalikan elemen-elemen yang memenuhi kondisi tertentu. |
+| `pluck($column)`          | `$names = $collection->pluck('name');`                           | Mengambil kolom tertentu dari setiap elemen dalam koleksi.  |
+| `sortBy($column)`         | `$sortedCollection = $collection->sortBy('name');`               | Mengurutkan koleksi berdasarkan kolom tertentu.             |
+| `groupBy($column)`        | `$groupedCollection = $collection->groupBy('category');`         | Mengelompokkan koleksi berdasarkan kolom tertentu.          |
+| `merge($otherCollection)` | `$mergedCollection = $collection->merge($otherCollection);`      | Menggabungkan dua koleksi.                                  |
+
+Pastikan untuk menyesuaikan dan memperluas daftar ini sesuai dengan kebutuhan proyek Anda.
