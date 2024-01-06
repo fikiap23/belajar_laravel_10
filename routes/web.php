@@ -25,4 +25,4 @@ Route::get('/about', function () {
 Route::get('/blog', [PostController::class, "index"]);
 
 // halaman single blog
-Route::get('/blog/{post}', [PostController::class, "show"]);
+Route::get('/blog/{post:slug}', [PostController::class, "show"]);
