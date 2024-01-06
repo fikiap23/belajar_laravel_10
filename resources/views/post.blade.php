@@ -4,10 +4,10 @@
 @section('container')
     <article class="mb-10">
         <h2 class="font-bold text-2xl">
-            {{ $post['title'] }}
+            {{ $post->title }}
         </h2>
-        <h5 class="font-bold">By: {{ $post['author'] }}</h5>
-        <p>{{ $post['body'] }}</p>
+
+        {!! $post->body !!}
     </article>
 
     <a href="/blog">Back to blog</a>
