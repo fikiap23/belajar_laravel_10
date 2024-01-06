@@ -2,6 +2,7 @@
 
 -   Post::create([
     'title' => 'Sebuah seni mengetik',
+    'slug' => 'sebuah-seni-mengetik',
     'excerpt' => 'Di lorong waktu, penyair menyulam kata-kata, mencipta serangkaian makna dalam setiap baitnya.',
     'body' => 'Di lorong waktu, penyair menyulam kata-kata, mencipta serangkaian makna dalam setiap baitnya. Di serangkaian loop waktu, programmer menyusun kode-kode, menciptakan algoritma dalam setiap iterasinya.'
     ])
