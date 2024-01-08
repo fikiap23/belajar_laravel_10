@@ -2,7 +2,7 @@
 @extends('layouts.main')
 
 @section('container')
-    <h1 class="text-5xl mb-10 text-center font-bold">{{ $title }} </h1>
+    <h1 class="text-3xl mb-10 text-center font-bold">{{ $title }} </h1>
     @foreach ($posts as $post)
         <article class="mb-10 border-b pb-4">
             <h2 class="font-bold text-2xl text-blue-600">
