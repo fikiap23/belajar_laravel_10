@@ -18,6 +18,12 @@ class DatabaseSeeder extends Seeder
         // \App\Models\User::factory(10)->create();
 
         User::factory()->create([
+            'name' => 'Fiki Aprian',
+            'email' => 'fikiaprian23@gmail.com',
+            'password' => bcrypt('12345'),
+        ]);
+
+        User::factory()->create([
             'name' => 'Test User',
             'email' => 'test@example.com',
             'password' => bcrypt('12345'),
@@ -44,7 +50,7 @@ class DatabaseSeeder extends Seeder
         Post::create([
             'title' => 'Post ketiga',
             'category_id' => 1,
-            'user_id' => 1,
+            'user_id' => 2,
             'slug' => 'post-ketiga',
             'excerpt' => 'Membuat website',
             'body' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex, temporibus animi, soluta distinctio, ut dignissimos aliquam fugiat eligendi nemo asperiores in laboriosam repudiandae libero minima odit aliquid corporis consequuntur nihil.',
