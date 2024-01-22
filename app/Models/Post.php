@@ -21,6 +21,9 @@ class Post extends Model
     // guarded agar bisa disi secara mass assignment akan tetapi adalah data yang tidak boleh diisi(pengecualian)
     protected $guarded = ['id'];
 
+
+    protected $with = ['category', 'author'];
+
     public function category()
     {
         return $this->belongsTo(Category::class);
