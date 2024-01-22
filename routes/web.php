@@ -21,7 +21,12 @@ Route::get('/', function () {
 });
 
 Route::get('/about', function () {
-    return view("about", ["title" => "About", "name" => "Fiki Aprian", "email" => "fikiaprian23@gmail.com", "image" => "fiki.png"]);
+    return view("about", [
+        "title" => "About",
+        "name" => "Fiki Aprian",
+        "email" => "fikiaprian23@gmail.com",
+        "image" => "fiki.png"
+    ]);
 });
 
 Route::get('/blog', [PostController::class, "index"]);
